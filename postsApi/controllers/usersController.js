@@ -29,10 +29,10 @@ router.get('/:id',(req,res) => {
 //ROUTER:  INSRT POST INTO DB
 router.post('/',(req,res) => {
         var usr = new Users({
-            FirsName:req.body.FirsName,
-            LastName:req.body.LastName,
+            UserName:req.body.UserName,
+            Password:req.body.Password,
             Email:req.body.Email,
-            DateReg: req.body.DateReg,
+            DateReg: Date.now(),
         });
 
         
@@ -50,10 +50,10 @@ router.put('/:id',(req,res) => {
     return res.status(400).send(`no records with given Id:" + ${req.params.id}`);
 
     var usr = {
-        FirsName:req.body.FirsName,
-        LastName:req.body.LastName,
+        UserName:req.body.UserName,
+        Password:req.body.Password,
         Email:req.body.Email,
-        DateReg: req.body.DateReg,
+        DateReg: Date.now(),
     };
 
     Users.findByIdAndUpdate(req.params.id,{$set:usr},{ new:true}, (err,doc) => {
